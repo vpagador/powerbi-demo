@@ -3,7 +3,8 @@
 # Installation Instructions
 
 1. `git clone https://github.com/vpagador/powerbi-demo.git`
-2. `python main.py` or `python3 main.py`
+2. `cd powerbi-demo`
+3. `python main.py` or `python3 main.py`
 Three .csv data files will be exported to your local directory. 
 
 # Usage Instructions
