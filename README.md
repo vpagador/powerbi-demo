@@ -25,4 +25,5 @@ Requires packages pandas and shortuuid, installed by running:
 # Test the Data Refresh on PowerBi
 You can run steps 3-4 on Installation Instructions to populate the datasets with different data.
 Then on PowerBi Desktop click on the Refresh button on the Home tab.
+
 ![image](https://github.com/vpagador/powerbi-demo/assets/80417833/ffb87cff-ae6b-4286-852f-a295f254967d)
