@@ -4,7 +4,7 @@
 
 1. `git clone https://github.com/vpagador/powerbi-demo.git`
 2. `cd powerbi-demo`
-3. `python main.py` or `python3 main.py`
+3. `python main.py` or `python3 main.py` to populate the csv files with data
 Three .csv data files will be exported to your local directory. 
 
 # Usage Instructions
