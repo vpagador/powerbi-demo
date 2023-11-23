@@ -3,6 +3,7 @@ This is a mini-project which demos PowerBi Desktop using three datasets.
 
 # Dependencies
 Requires Python3
+
 Requires packages pandas and shortuuid, installed by running:
 
 `pip install pandas`
