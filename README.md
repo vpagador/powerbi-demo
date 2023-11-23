@@ -7,6 +7,7 @@ Requires Python3
 Requires packages pandas and shortuuid, installed by running:
 
 `pip install pandas`
+
 `pip install shortuuid` 
 
 # Installation Instructions
