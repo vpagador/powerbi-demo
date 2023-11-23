@@ -1,6 +1,13 @@
 # Powerbi-demo
 This is a mini-project which demos PowerBi Desktop using three datasets.
 
+# Dependencies
+Requires Python3
+Requires packages pandas and shortuuid, installed by running:
+
+`pip install pandas`
+`pip install shortuuid` 
+
 # Installation Instructions
 
 1. `git clone https://github.com/vpagador/powerbi-demo.git`
