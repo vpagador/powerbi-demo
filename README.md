@@ -16,7 +16,7 @@ Requires packages pandas and shortuuid, installed by running:
 4. Save each .csv file
 
 # Usage Instructions
-1. Open `demo_start.pbix`
+1. Download and open `demo_start.pbix`
 2. Load the datasets
 3. Transform Tables as necessary
 4. Build the database schema by connecting the keys from the dimension tables to the fact table.
