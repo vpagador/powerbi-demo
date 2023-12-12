@@ -7,16 +7,17 @@ from datetime import datetime, timedelta
 
 class FactTableGenerator:
 
-    def __init__(self, num_of_rows):
+    def __init__(self, num_of_rows, product_file):
         self.num_of_rows = num_of_rows
+        self.product_file = product_file
         np.random.seed(42)
 
-    def fact_id_column(self) -> dict:
+    def _fact_id_column(self) -> dict:
         fact_ids = [str(shortuuid.uuid()) for products in range(0,self.num_of_rows)]
         column_dict = {'order_id': fact_ids}
         return column_dict
 
-    def customer_id_column(self,num_of_customers:int) -> dict:
+    def _customer_id_column(self,num_of_customers:int) -> dict:
         customer_ids = np.random.randint(1,
                           num_of_customers,
                           size=self.num_of_rows)
@@ -24,7 +25,7 @@ class FactTableGenerator:
         return column_dict
     
 
-    def date_id_column(self,start_date:str, end_date:str) -> dict:
+    def _date_id_column(self,start_date:str, end_date:str) -> dict:
         start_datetime = datetime(year=int(start_date[0:4]),     # year 
                                   month=int(start_date[4:6]),     # month
                                   day=int(start_date[6:8]))     # day
@@ -40,7 +41,7 @@ class FactTableGenerator:
         date_dict =  {'date_id': random_dates}
         return date_dict
     
-    def product_columns(self, dim_product_filepath) -> dict:
+    def _product_columns(self, dim_product_filepath) -> dict:
         df = pd.read_csv(dim_product_filepath)
         chosen_products = [random.choice(list(zip(df['product_id'],df['sale_price']))) for id in range(0,self.num_of_rows)]
         quantities = self._product_quantity_column()
@@ -57,23 +58,23 @@ class FactTableGenerator:
         product_quantity = [random.choice(quantities) for _ in range(self.num_of_rows)]
         return product_quantity
     
-    def combine_columns(self,list_of_dicts : dict) -> pd.DataFrame:
+    def _combine_columns(self,list_of_dicts : dict) -> pd.DataFrame:
         combined_dict = {}
         for dictionary in list_of_dicts:
             combined_dict.update(dictionary) 
         combined_dataframe = pd.DataFrame(combined_dict)
         return combined_dataframe
     
-def fact_table_generator(num_of_rows):
-    dataset = FactTableGenerator(num_of_rows)
-    dates = dataset.date_id_column('20230101','20231201')
-    facts = dataset.fact_id_column()
-    products = dataset.product_columns('dim_products.csv')
-    customers = dataset.customer_id_column(40)
-   
-    df = dataset.combine_columns([facts,dates,products,customers,products])
-    return df
+    def fact_table_generator(self):
+        dates = self._date_id_column('20230101','20231201')
+        facts = self._fact_id_column()
+        products = self._product_columns(self.product_file)
+        customers = self._customer_id_column(40)
+    
+        df = self._combine_columns([facts,dates,products,customers,products])
+        return df
 
 if __name__ == '__main__':
-    facts_df = fact_table_generator(50)
-    facts_df.to_csv('fact_table.csv')
+    generator = FactTableGenerator(100, 'data_files/dim_products.csv')
+    df = generator.fact_table_generator()
+    print(df)

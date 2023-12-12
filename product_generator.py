@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 import random
 import uuid
-from datetime import datetime, timedelta
 
     
 def create_products(num_of_products:int):
@@ -16,8 +15,8 @@ def create_products(num_of_products:int):
     product_df = pd.DataFrame(new_dictionary)
     return product_df
     
-
-df = create_products(6)
-df.to_csv('dim_products.csv')
+if __name__ == '__main__':
+    df = create_products(6)
+    df.to_csv('dim_products.csv')
 
 

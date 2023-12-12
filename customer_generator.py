@@ -30,9 +30,9 @@ class CustomerGenerator:
         return customer_df
     
         
-    
-customer_generator = CustomerGenerator('fact_table.csv')
-df = customer_generator.derive_customers('customer_id')
-df.to_csv('dim_customers.csv')
+if __name__ == '__main__':
+    customer_generator = CustomerGenerator('fact_table.csv')
+    df = customer_generator.derive_customers('customer_id')
+    df.to_csv('dim_customers.csv')
 
 
